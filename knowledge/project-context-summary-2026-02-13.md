@@ -1,6 +1,6 @@
 # PartnerProgram - Project Context Summary
 
-Last updated: 2026-02-13
+Last updated: 2026-02-13 (post-deploy)
 
 ## Project Goal
 
@@ -112,6 +112,15 @@ Current status:
   - Typography and globals updated:
     - `app/src/app/layout.tsx` (DM Sans)
     - `app/src/app/globals.css`
+- Final polish pass completed (senior design feedback applied):
+  - Header segmented control improved for information hierarchy + mobile behavior
+  - Hero stats redesigned into compact insight tiles
+  - Added directional CTA under hero stats
+  - Seller "Expansion Journey" redesigned as timeline + accordion
+  - Pain points reframed as "Challenges" with advisory amber callouts (not red error alerts)
+  - Country cards improved with code pills (`MX`, `BR`, `AR`, `CO`) and stronger contrast rhythm
+  - Surface/elevation system normalized (border + micro-shadow + consistent radius)
+  - Mobile spacing/typography rhythm improved across hero/seller/partner sections
 
 ## Maintainability Improvements Completed
 
@@ -129,12 +138,28 @@ Current status:
 - Custom workflow rules moved to `.cursor/rules/*.mdc`
 - Old `.cursor/commands/*.md` files were removed (expected)
 
+## Git and Deployment Status
+
+- Git initialized at project root: `PartnerProgram/.git`
+- Initial commit created on `main`:
+  - `2e80bd6 Initial PartnerProgram: UI refactor, security hardening, and knowledge docs`
+- GitHub remote configured and push completed:
+  - `https://github.com/PabloBattro/PartnerProgram.git`
+- Vercel deployment completed from `app/` root directory
+- Production URL live:
+  - `https://partner-program-drab.vercel.app/`
+- Vercel env vars configured and verified:
+  - `NEXT_PUBLIC_SUPABASE_URL`
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- Local-only `ALLOW_INSECURE_LOCAL_TLS` remains a development workaround and should not be configured in Vercel
+- Live form submission confirmed working after env var setup + redeploy
+
 ## Recommended Next Steps
 
-1. Smoke-test both submission forms end-to-end (valid, invalid, spammy payloads)
-2. Optional: move in-memory rate limiter to persistent store (Upstash/Redis) before higher traffic
-3. Push repo to GitHub
-4. Deploy to Vercel with env vars
-5. Connect custom domain
+1. Connect custom domain in Vercel
+2. Add basic analytics/event tracking for submission funnel visibility
+3. Optional: move in-memory rate limiter to persistent store (Upstash/Redis) before higher traffic
+4. Add lightweight regression checklist for every deploy (seller submit, partner submit, DB verify)
+5. Start V2 scope planning (Spanish/Portuguese + editorial content)
 
 

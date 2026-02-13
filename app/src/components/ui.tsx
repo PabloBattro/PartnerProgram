@@ -9,11 +9,11 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export function Button({ variant = 'primary', size = 'md', className = '', children, ...props }: ButtonProps) {
-  const base = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed';
+  const base = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6F3FF5]/40 focus-visible:ring-offset-2';
   const variants = {
-    primary: 'bg-[#6F3FF5] hover:bg-[#5E35CF] text-white shadow-md hover:shadow-lg',
-    secondary: 'bg-[#00A5DF] hover:bg-[#008FBE] text-white shadow-md hover:shadow-lg',
-    outline: 'border-2 border-[#6F3FF5] text-[#6F3FF5] hover:bg-[#6F3FF5] hover:text-white',
+    primary: 'bg-[#6F3FF5] hover:bg-[#5E35CF] text-white shadow-sm hover:shadow-md hover:-translate-y-px',
+    secondary: 'bg-[#00A5DF] hover:bg-[#008FBE] text-white shadow-sm hover:shadow-md hover:-translate-y-px',
+    outline: 'border border-[#6F3FF5] text-[#6F3FF5] hover:bg-[#6F3FF5] hover:text-white',
   };
   const sizes = {
     sm: 'px-4 py-2 text-sm',
@@ -39,7 +39,7 @@ export function Input({ label, error, className = '', ...props }: InputProps) {
     <div className="space-y-1">
       <label className="block text-sm font-medium text-gray-700">{label}</label>
       <input
-        className={`w-full px-4 py-3 border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#6F3FF5] focus:border-transparent ${
+        className={`w-full px-4 py-3 border rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-[#6F3FF5] focus:border-transparent ${
           error ? 'border-red-500' : 'border-gray-300'
         } ${className}`}
         {...props}
@@ -61,7 +61,7 @@ export function Select({ label, options, error, className = '', ...props }: Sele
     <div className="space-y-1">
       <label className="block text-sm font-medium text-gray-700">{label}</label>
       <select
-        className={`w-full px-4 py-3 border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#6F3FF5] focus:border-transparent bg-white ${
+        className={`w-full px-4 py-3 border rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-[#6F3FF5] focus:border-transparent bg-white ${
           error ? 'border-red-500' : 'border-gray-300'
         } ${className}`}
         {...props}
@@ -100,7 +100,7 @@ export function MultiSelect({ label, options, selected, onChange }: MultiSelectP
         {options.map((opt) => (
           <label
             key={opt.value}
-            className={`flex items-center gap-2 p-3 border rounded-lg cursor-pointer transition-all ${
+            className={`flex items-center gap-2 p-3 border rounded-xl cursor-pointer transition-all focus-within:ring-2 focus-within:ring-[#6F3FF5]/30 ${
               selected.includes(opt.value)
                 ? 'border-[#6F3FF5] bg-violet-50 text-[#6F3FF5]'
                 : 'border-gray-300 hover:border-gray-400'
@@ -142,7 +142,7 @@ export function TextArea({ label, error, className = '', ...props }: TextAreaPro
     <div className="space-y-1">
       <label className="block text-sm font-medium text-gray-700">{label}</label>
       <textarea
-        className={`w-full px-4 py-3 border rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#6F3FF5] focus:border-transparent ${
+        className={`w-full px-4 py-3 border rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-[#6F3FF5] focus:border-transparent ${
           error ? 'border-red-500' : 'border-gray-300'
         } ${className}`}
         rows={4}
@@ -161,7 +161,7 @@ interface CardProps {
 
 export function Card({ children, className = '' }: CardProps) {
   return (
-    <div className={`bg-white rounded-xl shadow-md p-6 border border-gray-100 ${className}`}>
+    <div className={`bg-white rounded-xl shadow-sm p-6 border border-slate-200 ${className}`}>
       {children}
     </div>
   );
