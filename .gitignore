@@ -1,0 +1,30 @@
+# Node / Next
+**/node_modules/
+**/.next/
+**/dist/
+**/coverage/
+
+# Environment / secrets
+**/.env.local
+**/.env.*.local
+**/.env
+
+# Local runtime logs
+app/dev-server.log
+app/dev-server.err.log
+npm-debug.log*
+yarn-error.log*
+
+# Keep exported logos used by app/public/brand, but ignore raw asset packages
+brand-assets/
+*.zip
+*.pdf
+Payoneer-Brand-Assets.aspx
+payo logo 1.png
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
