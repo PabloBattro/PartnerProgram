@@ -42,3 +42,42 @@ Keep questions brief. One message with 2-3 targeted questions beats multiple bac
 - Default priority: normal, effort: medium (ask only if unclear)
 - Max 3 files in context - most relevant only
 - Bullet points over paragraphs
+
+## Persist to Backlog (MANDATORY)
+
+After presenting the issue to the user, **always** append it to `docs/backlog.md`.
+
+Use this exact format when appending:
+
+```
+### ISS-{NNN} · {Title}
+
+| Field    | Value                          |
+|----------|--------------------------------|
+| Type     | bug / feature / improvement    |
+| Priority | low / normal / high / critical |
+| Effort   | small / medium / large         |
+| Status   | open                           |
+| Created  | YYYY-MM-DD                     |
+
+**TL;DR:** One-liner summary.
+
+**Current → Expected:**
+- Current: what happens now
+- Expected: what should happen
+
+**Files:**
+- `path/to/file1.ts`
+- `path/to/file2.ts`
+
+**Notes:** Any risks, dependencies, or extra context. Omit row if none.
+
+---
+```
+
+Rules for the backlog:
+- Auto-increment `ISS-{NNN}` by reading the last ID in `docs/backlog.md` (start at ISS-001)
+- Newest issues go at the **bottom** of the file (append before the end)
+- Never remove or edit existing entries — append only
+- When marking an issue done later, change Status to `done` and add a `Resolved` date row
+- This step is **not optional** — if the file write fails, retry or alert the user

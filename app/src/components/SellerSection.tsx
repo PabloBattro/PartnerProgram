@@ -68,6 +68,7 @@ export function SellerSection() {
     title: t(`seller.stage${n}`),
     description: t(`seller.stage${n}Desc`),
     challenge: t(`seller.stage${n}Pain`),
+    solution: t(`seller.stage${n}Solution`),
   }));
 
   const countries = [
@@ -120,42 +121,85 @@ export function SellerSection() {
       </section>
 
       {/* Expansion Journey (Timeline + Accordion) */}
-      <section className="py-4 sm:py-6 md:py-8">
+      <section className="py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900 text-center mb-8 md:mb-10">{t('seller.journeyTitle')}</h3>
+          <div className="text-center mb-8 md:mb-10">
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900 mb-3">{t('seller.journeyTitle')}</h3>
+            <p className="text-base text-slate-500 max-w-[58ch] mx-auto leading-relaxed">{t('seller.journeySubtitle')}</p>
+          </div>
+
           <div className="relative space-y-4">
-            <div className="absolute left-4 top-2 bottom-2 w-px bg-slate-200" />
-            {stages.map((stage) => (
-              <div key={stage.id} className="relative pl-12">
-                <div className="absolute left-0 top-4 w-8 h-8 bg-[#6F3FF5] text-white rounded-full flex items-center justify-center text-sm font-bold shadow-sm">
-                  {stage.id}
-                </div>
-                <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-shadow duration-200 hover:shadow-md">
-                  <button
-                    type="button"
-                    onClick={() => setOpenStage((prev) => (prev === stage.id ? 0 : stage.id))}
-                    className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4"
-                  >
-                    <h4 className="font-semibold text-lg text-slate-900">{stage.title}</h4>
-                    <span className={`text-slate-400 transition-transform duration-200 ${openStage === stage.id ? 'rotate-180' : ''}`}>⌄</span>
-                  </button>
-                  {openStage === stage.id && (
-                    <div className="px-4 sm:px-5 pb-4 sm:pb-5">
-                      <p className="text-slate-600 leading-relaxed mb-4 max-w-[65ch]">{stage.description}</p>
-                      <div className="flex items-start gap-3 bg-amber-50/70 border-l-4 border-amber-400 rounded-r-xl p-3">
-                        <svg className="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            {/* Timeline vertical line */}
+            <div className="absolute left-4 top-2 bottom-2 w-0.5 bg-gradient-to-b from-[#6F3FF5]/30 via-[#6F3FF5]/15 to-slate-200 rounded-full" />
+
+            {stages.map((stage) => {
+              const isOpen = openStage === stage.id;
+              return (
+                <div key={stage.id} className="relative pl-12">
+                  <div className="absolute left-0 top-4 w-8 h-8 bg-[#6F3FF5] text-white rounded-full flex items-center justify-center text-sm font-bold shadow-sm ring-4 ring-white">
+                    {stage.id}
+                  </div>
+                  <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-shadow duration-200 hover:shadow-md">
+                    <button
+                      type="button"
+                      onClick={() => setOpenStage((prev) => (prev === stage.id ? 0 : stage.id))}
+                      aria-expanded={isOpen}
+                      aria-controls={`journey-panel-${stage.id}`}
+                      className="w-full p-4 sm:p-5 text-left"
+                    >
+                      <div className="flex items-center justify-between gap-4">
+                        <h4 id={`journey-heading-${stage.id}`} className="font-semibold text-lg text-slate-900">{stage.title}</h4>
+                        <svg
+                          className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
-                        <p className="text-sm text-amber-900">
-                          <span className="font-semibold">{t('seller.challengeLabel')}: </span>
-                          {stage.challenge}
-                        </p>
                       </div>
-                    </div>
-                  )}
+                      {!isOpen && (
+                        <p className="text-sm text-slate-500 mt-1.5 leading-relaxed line-clamp-2 max-w-[60ch]">{stage.description}</p>
+                      )}
+                    </button>
+
+                    {isOpen && (
+                      <div id={`journey-panel-${stage.id}`} role="region" aria-labelledby={`journey-heading-${stage.id}`} className="px-4 sm:px-5 pb-4 sm:pb-5 space-y-3">
+                        <p className="text-slate-600 leading-relaxed max-w-[65ch]">{stage.description}</p>
+
+                        {/* Challenge callout */}
+                        <div className="flex items-start gap-3 bg-amber-50/70 border-l-4 border-amber-400 rounded-r-xl p-3">
+                          <svg className="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <p className="text-sm text-amber-900">
+                            <span className="font-semibold">{t('seller.challengeLabel')}: </span>
+                            {stage.challenge}
+                          </p>
+                        </div>
+
+                        {/* Partner solution callout */}
+                        <div className="flex items-start gap-3 bg-emerald-50/70 border-l-4 border-emerald-400 rounded-r-xl p-3">
+                          <svg className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <p className="text-sm text-emerald-900">
+                            <span className="font-semibold">{t('seller.solutionLabel')}: </span>
+                            {stage.solution}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+
+          {/* Journey CTA */}
+          <div className="text-center mt-10 md:mt-12">
+            <p className="text-lg font-semibold text-slate-800 mb-4">{t('seller.journeyCtaTitle')}</p>
+            <Button variant="primary" size="lg" onClick={() => document.getElementById('seller-form')?.scrollIntoView({ behavior: 'smooth' })}>
+              {t('seller.journeyCtaButton')}
+            </Button>
           </div>
         </div>
       </section>
