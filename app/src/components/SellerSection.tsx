@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from '@/lib/i18n';
 import { Button, Input, Select, MultiSelect, Card } from './ui';
+import { Testimonials } from './Testimonials';
 
 export function SellerSection() {
   const { t } = useTranslation();
@@ -79,17 +80,17 @@ export function SellerSection() {
   ];
 
   return (
-    <div className="space-y-14 md:space-y-20">
+    <div className="space-y-10 md:space-y-14">
       {/* Value Proposition */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="text-center mb-10 md:mb-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+        <div className="text-center mb-6 md:mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-4">{t('seller.title')}</h2>
           <p className="text-lg text-gray-600 max-w-[68ch] mx-auto leading-relaxed">{t('seller.subtitle')}</p>
         </div>
 
         {/* Why LATAM */}
         <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900 text-center mb-8 md:mb-10">{t('seller.whyTitle')}</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-12 md:mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
           <Card className="hover:shadow-md transition-all duration-200 hover:-translate-y-px">
             <div className="text-center">
               <div className="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center mx-auto mb-4">
@@ -121,7 +122,7 @@ export function SellerSection() {
       </section>
 
       {/* Expansion Journey (Timeline + Accordion) */}
-      <section className="py-12 md:py-16">
+      <section className="py-6 md:py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-10">
             <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900 mb-3">{t('seller.journeyTitle')}</h3>
@@ -203,6 +204,9 @@ export function SellerSection() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials */}
+      <Testimonials />
 
       {/* Markets */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">

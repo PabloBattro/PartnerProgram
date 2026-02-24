@@ -7,6 +7,7 @@ import { Hero } from '@/components/Hero';
 import { SellerSection } from '@/components/SellerSection';
 import { PartnerSection } from '@/components/PartnerSection';
 import { Footer } from '@/components/Footer';
+import { MarketplaceLogos } from '@/components/MarketplaceLogos';
 import type { Persona } from '@/types/persona';
 
 function HomePage() {
@@ -25,6 +26,7 @@ function HomePage() {
     <div className="min-h-screen bg-slate-50">
       <Header persona={persona} onPersonaChange={setPersona} />
       <Hero onPersonaChange={handlePersonaChange} />
+      <MarketplaceLogos />
 
       {/* Persona Content */}
       <div ref={contentRef}>

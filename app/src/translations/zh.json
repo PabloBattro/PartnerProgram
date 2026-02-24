@@ -15,7 +15,8 @@
     "stat3": "4",
     "stat3Label": "个拉美市场等待您的进入",
     "ctaSeller": "我想拓展业务",
-    "ctaPartner": "我想成为合作伙伴"
+    "ctaPartner": "我想成为合作伙伴",
+    "marketplaces": "在领先的拉美电商平台上销售"
   },
   "seller": {
     "title": "自信地拓展拉美市场",
@@ -159,6 +160,27 @@
     "formSubmit": "提交申请",
     "formSuccess": "感谢您！我们已收到您的合作伙伴申请，将在5个工作日内审核。",
     "formError": "出了点问题，请重试。"
+  },
+  "testimonials": {
+    "title": "成功案例",
+    "subtitle": "听听已经通过 Payoneer 生态系统实现增长的卖家和合作伙伴的心声。",
+    "quote1": "我们在速卖通上月销售额达20万美元，但在拉美毫无存在感。通过 Payoneer 的合作伙伴网络，我们对接了墨西哥城的物流和合规团队。4个月内我们就在 Mercado Libre 和 Amazon MX 上线了——<strong>拉美现在占我们收入的18%</strong>。",
+    "name1": "张伟",
+    "role1": "国际拓展负责人",
+    "company1": "深科电子",
+    "type1": "seller",
+    "quote2": "加入生态系统之前，我们完全依赖口碑获取新客户。现在 Payoneer 向我们推荐真正需要我们服务的预审国际卖家。第一年我们的<strong>客户组合增长了3倍</strong>。",
+    "name2": "María Fernanda López",
+    "role2": "执行董事",
+    "company2": "LATAM Trade Solutions",
+    "type2": "partner",
+    "quote3": "在巴西销售最难的部分一直是税务和实体设立——从中国操作几乎不可能。Payoneer 为我们对接了圣保罗的法律合作伙伴，他们处理了一切。我们<strong>用10周完成了上线，而不是预期的6个月</strong>。",
+    "name3": "李静",
+    "role3": "创始人兼首席执行官",
+    "company3": "光路美妆",
+    "type3": "seller",
+    "badgeSeller": "卖家",
+    "badgePartner": "合作伙伴"
   },
   "footer": {
     "powered": "技术支持",

@@ -15,7 +15,8 @@
     "stat3": "4",
     "stat3Label": "LATAM markets ready for your business",
     "ctaSeller": "I Want to Expand",
-    "ctaPartner": "I Want to Join as Partner"
+    "ctaPartner": "I Want to Join as Partner",
+    "marketplaces": "Sell on leading LATAM marketplaces"
   },
   "seller": {
     "title": "Expand into LATAM with Confidence",
@@ -159,6 +160,27 @@
     "formSubmit": "Submit Application",
     "formSuccess": "Thank you! We've received your partner application and will review it within 5 business days.",
     "formError": "Something went wrong. Please try again."
+  },
+  "testimonials": {
+    "title": "Success Stories",
+    "subtitle": "Hear from sellers and partners who are already growing through the Payoneer ecosystem.",
+    "quote1": "We were doing $200K/month on AliExpress but had zero presence in Latin America. Through Payoneer's partner network, we got matched with a logistics and compliance team in Mexico City. Within 4 months we were live on Mercado Libre and Amazon MX — and <strong>LATAM is now 18% of our revenue</strong>.",
+    "name1": "Wei Zhang",
+    "role1": "Head of International Expansion",
+    "company1": "ShenTech Electronics",
+    "type1": "seller",
+    "quote2": "Before joining the ecosystem, we relied entirely on word-of-mouth for new clients. Now Payoneer sends us pre-qualified international sellers who actually need our services. Our <strong>client portfolio grew 3x</strong> in the first year.",
+    "name2": "María Fernanda López",
+    "role2": "Managing Director",
+    "company2": "LATAM Trade Solutions",
+    "type2": "partner",
+    "quote3": "The hardest part of selling in Brazil was always the tax and entity setup — it felt impossible from China. Payoneer connected us with a legal partner in São Paulo who handled everything. We launched in <strong>10 weeks instead of the 6 months</strong> we expected.",
+    "name3": "Li Jing",
+    "role3": "Founder & CEO",
+    "company3": "GlowPath Beauty",
+    "type3": "seller",
+    "badgeSeller": "Seller",
+    "badgePartner": "Partner"
   },
   "footer": {
     "powered": "Powered by",
