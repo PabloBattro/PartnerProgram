@@ -1,6 +1,6 @@
 # PartnerProgram - Project Context Summary
 
-Last updated: 2026-02-13 (post-deploy)
+Last updated: 2026-02-24 (post-deploy)
 
 ## Project Goal
 
@@ -42,9 +42,22 @@ Primary objective in V1 is strategic validation and structured lead capture, not
   - `app/src/lib/i18n.tsx`
   - `app/src/translations/en.json`
   - `app/src/translations/zh.json`
+- Marketplace logo strip:
+  - `app/src/components/MarketplaceLogos.tsx` — static grayscale row (Amazon, Mercado Libre, Walmart, Linio)
+  - Rendered in `page.tsx` below hero, visible to both personas
+  - Logo assets in `app/public/logos/`
+- Testimonials / Success Stories carousel:
+  - `app/src/components/Testimonials.tsx` — CSS scroll-snap, 3 cards (2 seller, 1 partner)
+  - Rendered inside `SellerSection.tsx` between journey CTA and "Markets We Cover"
+  - Bold key metrics in quotes via `<strong>` tags in i18n strings
+  - Arrow + dot nav on mobile/tablet only; all cards visible on desktop (no nav needed)
+  - Initials-based avatar placeholders — ready for real photos
+  - Translation keys: `testimonials.*` in both en.json and zh.json
 - Planning and DB docs:
   - `docs/plan-partner-landing.md`
   - `docs/supabase-setup.sql`
+  - `docs/plans/ISS-002-marketplace-logo-strip.md`
+  - `docs/plans/ISS-003-testimonials-carousel.md`
 - Knowledge context docs for future chats:
   - `knowledge/project-context-summary-2026-02-13.md`
   - `knowledge/quick-start-next-chat.md`
@@ -138,28 +151,39 @@ Current status:
 - Custom workflow rules moved to `.cursor/rules/*.mdc`
 - Old `.cursor/commands/*.md` files were removed (expected)
 
+## Page Layout (current)
+
+```
+Header (sticky, persona toggle, language switcher)
+Hero (headline, stats, CTAs)
+MarketplaceLogos (shared, both personas)
+  Persona content:
+    Seller: Value Prop → Why LATAM → Journey Accordion → Testimonials → Markets → Form
+    Partner: Value Prop → Why Partner → How It Works → Categories → Form
+Footer
+```
+
 ## Git and Deployment Status
 
 - Git initialized at project root: `PartnerProgram/.git`
-- Initial commit created on `main`:
-  - `2e80bd6 Initial PartnerProgram: UI refactor, security hardening, and knowledge docs`
-- GitHub remote configured and push completed:
-  - `https://github.com/PabloBattro/PartnerProgram.git`
-- Vercel deployment completed from `app/` root directory
-- Production URL live:
-  - `https://partner-program-drab.vercel.app/`
-- Vercel env vars configured and verified:
-  - `NEXT_PUBLIC_SUPABASE_URL`
-  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- Local-only `ALLOW_INSECURE_LOCAL_TLS` remains a development workaround and should not be configured in Vercel
-- Live form submission confirmed working after env var setup + redeploy
+- GitHub remote: `https://github.com/PabloBattro/PartnerProgram.git`
+- Vercel deployment from `app/` root directory
+- Production URL: `https://partner-program-drab.vercel.app/`
+- Vercel env vars: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- Latest commits on `main`:
+  - `33fa2c2 Add missing MarketplaceLogos component and logo assets`
+  - `a403118 Add testimonials carousel with design-review polish`
+  - `34ea562 Revamp Expansion Journey section`
+  - `02c19f9 UI polish pass`
+  - `2e80bd6 Initial PartnerProgram`
 
 ## Recommended Next Steps
 
-1. Connect custom domain in Vercel
-2. Add basic analytics/event tracking for submission funnel visibility
-3. Optional: move in-memory rate limiter to persistent store (Upstash/Redis) before higher traffic
-4. Add lightweight regression checklist for every deploy (seller submit, partner submit, DB verify)
-5. Start V2 scope planning (Spanish/Portuguese + editorial content)
+1. Replace testimonial mock content with real customer/partner quotes and photos
+2. Connect custom domain in Vercel
+3. Add basic analytics/event tracking for submission funnel visibility
+4. Optional: move in-memory rate limiter to persistent store (Upstash/Redis) before higher traffic
+5. Add lightweight regression checklist for every deploy (seller submit, partner submit, DB verify)
+6. Start V2 scope planning (Spanish/Portuguese + editorial content)
 
 

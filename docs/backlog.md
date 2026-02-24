@@ -6,6 +6,31 @@
 
 <!-- New issues are appended below this line -->
 
+### ISS-003 · Testimonials / Success Stories carousel
+
+| Field    | Value                          |
+|----------|--------------------------------|
+| Type     | feature                        |
+| Priority | normal                         |
+| Effort   | medium                         |
+| Status   | done (code); pending real content |
+| Created  | 2026-02-24                     |
+| Closed   | 2026-02-24                     |
+
+**TL;DR:** Social proof carousel with 3 success story cards — 2 sellers (Chinese brands expanding to LATAM) + 1 partner (LATAM service provider growing via ecosystem). Horizontally scrollable on mobile, static 3-up on desktop.
+
+**Implementation:**
+- `app/src/components/Testimonials.tsx` — CSS scroll-snap carousel, IntersectionObserver for dot sync
+- Translation keys: `testimonials.*` in `en.json` / `zh.json`
+- Placed in `SellerSection.tsx` between journey CTA and "Markets We Cover"
+- Plan: `docs/plans/ISS-003-testimonials-carousel.md`
+
+**Remaining:**
+- Replace mock avatars with real headshots
+- Replace mock quotes/names with actual customer/partner testimonials
+
+---
+
 ### ISS-001 · Revamp "Your Expansion Journey" section — content and visual
 
 | Field    | Value                          |
@@ -13,8 +38,9 @@
 | Type     | improvement                    |
 | Priority | high                           |
 | Effort   | medium                         |
-| Status   | open                           |
+| Status   | done                           |
 | Created  | 2026-02-23                     |
+| Closed   | 2026-02-24                     |
 
 **TL;DR:** The Expansion Journey accordion section needs a content + visual overhaul to feel more polished, actionable, and differentiated from generic timelines.
 
@@ -38,8 +64,9 @@
 | Type     | feature                        |
 | Priority | normal                         |
 | Effort   | small                          |
-| Status   | open                           |
+| Status   | done                           |
 | Created  | 2026-02-23                     |
+| Closed   | 2026-02-24                     |
 
 **TL;DR:** Add a static logo bar (à la Stripe's homepage) showcasing LATAM marketplaces we work with: Mercado Libre, Walmart, Amazon, Linio.
 
