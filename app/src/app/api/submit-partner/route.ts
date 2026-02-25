@@ -1,9 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabase } from '@/lib/supabase';
-import { checkRateLimit, getClientIp } from '@/lib/security';
+import { checkRateLimit, getClientIp, checkCsrf } from '@/lib/security';
 import { validatePartnerPayload } from '@/lib/validation';
 
 export async function POST(request: NextRequest) {
+  const csrfError = checkCsrf(request);
+  if (csrfError) {
+    return NextResponse.json({ error: csrfError }, { status: 403 });
+  }
+
   const clientIp = getClientIp(request.headers.get('x-forwarded-for'));
   const limit = checkRateLimit(`submit-partner:${clientIp}`, 15, 10 * 60 * 1000);
   if (!limit.allowed) {

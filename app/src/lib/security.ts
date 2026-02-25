@@ -1,3 +1,5 @@
+import { NextRequest } from 'next/server';
+
 type RateLimitBucket = {
   count: number;
   resetAt: number;
@@ -32,6 +34,38 @@ export function checkRateLimit(
   existing.count += 1;
   rateLimitStore.set(key, existing);
   return { allowed: true, retryAfterSeconds: 0 };
+}
+
+/**
+ * CSRF protection via Origin header validation.
+ * Blocks cross-origin POST requests from malicious sites.
+ * Returns null if the request is safe, or an error message if blocked.
+ */
+export function checkCsrf(request: NextRequest): string | null {
+  const origin = request.headers.get('origin');
+  const host = request.headers.get('host');
+
+  if (!origin) {
+    // Requests without Origin (e.g. server-to-server) are allowed
+    // since they can't carry browser cookies/credentials
+    return null;
+  }
+
+  if (!host) {
+    return 'Missing host header';
+  }
+
+  try {
+    const originHost = new URL(origin).host;
+    if (originHost !== host) {
+      console.warn('CSRF blocked: origin mismatch', { origin, host });
+      return 'Cross-origin request blocked';
+    }
+  } catch {
+    return 'Invalid origin header';
+  }
+
+  return null;
 }
 
 

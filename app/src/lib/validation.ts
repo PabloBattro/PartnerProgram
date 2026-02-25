@@ -32,6 +32,18 @@ type ValidationResult<T> =
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/* ── Allowlists for enum/select fields ── */
+
+const ALLOWED_VOLUMES = ['under_10k', '10k_50k', '50k_200k', '200k_1m', 'over_1m'] as const;
+const ALLOWED_PRESENCE = ['yes', 'no'] as const;
+const ALLOWED_COUNTRIES = ['mexico', 'brazil', 'argentina', 'colombia'] as const;
+const ALLOWED_SELLER_PARTNER_TYPES = ['legal', 'tax', 'logistics', 'marketing', 'imports', 'research'] as const;
+const ALLOWED_TIMELINES = ['immediately', 'short_term', 'medium_term', 'exploring'] as const;
+const ALLOWED_BUSINESS_TYPES = ['ecommerce', 'brand', 'distributor', 'other'] as const;
+const ALLOWED_MIN_SIZES = ['no_min', '10k', '50k', '200k'] as const;
+const ALLOWED_LANGUAGES = ['english', 'spanish', 'portuguese', 'chinese', 'other'] as const;
+const ALLOWED_CAPACITIES = ['immediately', 'one_month', 'limited'] as const;
+
 function toTrimmedString(value: unknown): string | null {
   if (typeof value !== 'string') return null;
   const trimmed = value.trim();
@@ -86,6 +98,38 @@ function validateEmail(value: unknown): ValidationResult<string> {
   return { ok: true, data: parsed.toLowerCase() };
 }
 
+function requireAllowedValue(
+  value: unknown,
+  fieldName: string,
+  allowed: readonly string[]
+): ValidationResult<string> {
+  const parsed = toTrimmedString(value);
+  if (!parsed) return { ok: false, error: `${fieldName} is required` };
+  if (!allowed.includes(parsed)) return { ok: false, error: `${fieldName} has an invalid value` };
+  return { ok: true, data: parsed };
+}
+
+function requiredAllowedArray(
+  value: unknown,
+  fieldName: string,
+  allowed: readonly string[],
+  maxItems = 20
+): ValidationResult<string[]> {
+  if (!Array.isArray(value)) return { ok: false, error: `${fieldName} must be an array` };
+  const normalized = value
+    .filter((item): item is string => typeof item === 'string')
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  if (normalized.length === 0) return { ok: false, error: `${fieldName} must include at least one value` };
+  if (normalized.length > maxItems) return { ok: false, error: `${fieldName} has too many values` };
+
+  const invalid = normalized.find((item) => !allowed.includes(item));
+  if (invalid) return { ok: false, error: `${fieldName} contains an invalid value` };
+
+  return { ok: true, data: normalized };
+}
+
 function validateHoneypot(value: unknown): ValidationResult<string> {
   if (value == null || value === '') return { ok: true, data: '' };
   const parsed = toTrimmedString(value);
@@ -105,17 +149,17 @@ export function validateSellerPayload(body: unknown): ValidationResult<SellerSub
   if (!email.ok) return email;
   const phone = optionalString(payload.phone, 'phone');
   if (!phone.ok) return phone;
-  const volume = requireNonEmptyString(payload.volume, 'volume');
+  const volume = requireAllowedValue(payload.volume, 'volume', ALLOWED_VOLUMES);
   if (!volume.ok) return volume;
-  const latamPresence = requireNonEmptyString(payload.latamPresence, 'latamPresence');
+  const latamPresence = requireAllowedValue(payload.latamPresence, 'latamPresence', ALLOWED_PRESENCE);
   if (!latamPresence.ok) return latamPresence;
-  const countries = requiredStringArray(payload.countries, 'countries');
+  const countries = requiredAllowedArray(payload.countries, 'countries', ALLOWED_COUNTRIES);
   if (!countries.ok) return countries;
-  const partnerTypes = requiredStringArray(payload.partnerTypes, 'partnerTypes');
+  const partnerTypes = requiredAllowedArray(payload.partnerTypes, 'partnerTypes', ALLOWED_SELLER_PARTNER_TYPES);
   if (!partnerTypes.ok) return partnerTypes;
-  const timeline = requireNonEmptyString(payload.timeline, 'timeline');
+  const timeline = requireAllowedValue(payload.timeline, 'timeline', ALLOWED_TIMELINES);
   if (!timeline.ok) return timeline;
-  const businessType = requireNonEmptyString(payload.businessType, 'businessType');
+  const businessType = requireAllowedValue(payload.businessType, 'businessType', ALLOWED_BUSINESS_TYPES);
   if (!businessType.ok) return businessType;
   const website = validateHoneypot(payload.website);
   if (!website.ok) return website;
@@ -150,17 +194,17 @@ export function validatePartnerPayload(body: unknown): ValidationResult<PartnerS
   if (!email.ok) return email;
   const phone = optionalString(payload.phone, 'phone');
   if (!phone.ok) return phone;
-  const countries = requiredStringArray(payload.countries, 'countries');
+  const countries = requiredAllowedArray(payload.countries, 'countries', ALLOWED_COUNTRIES);
   if (!countries.ok) return countries;
-  const services = requiredStringArray(payload.services, 'services');
+  const services = requiredAllowedArray(payload.services, 'services', ALLOWED_SELLER_PARTNER_TYPES);
   if (!services.ok) return services;
-  const minSize = requireNonEmptyString(payload.minSize, 'minSize');
+  const minSize = requireAllowedValue(payload.minSize, 'minSize', ALLOWED_MIN_SIZES);
   if (!minSize.ok) return minSize;
-  const languages = requiredStringArray(payload.languages, 'languages');
+  const languages = requiredAllowedArray(payload.languages, 'languages', ALLOWED_LANGUAGES);
   if (!languages.ok) return languages;
   const credentials = optionalString(payload.credentials, 'credentials', 2000);
   if (!credentials.ok) return credentials;
-  const capacity = requireNonEmptyString(payload.capacity, 'capacity');
+  const capacity = requireAllowedValue(payload.capacity, 'capacity', ALLOWED_CAPACITIES);
   if (!capacity.ok) return capacity;
   const website = validateHoneypot(payload.website);
   if (!website.ok) return website;
