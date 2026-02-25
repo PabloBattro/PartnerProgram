@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useTranslation } from '@/lib/i18n';
 import { Button, Input, Select, MultiSelect, Card } from './ui';
 import { Testimonials } from './Testimonials';
+import { EventGallery } from './EventGallery';
 
 export function SellerSection() {
   const { t } = useTranslation();
@@ -223,6 +224,9 @@ export function SellerSection() {
           ))}
         </div>
       </section>
+
+      {/* Event Gallery — pre-form conversion nudge */}
+      <EventGallery persona="seller" variant="compact" />
 
       {/* Seller Form */}
       <section className="py-12 md:py-16" id="seller-form">

@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+Project changelog: see `../CHANGELOG.md`.
+
 ## Getting Started
 
 First, run the development server:
@@ -19,6 +21,31 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Testing
+
+Run unit tests:
+
+```bash
+npm run test:unit
+```
+
+Run end-to-end smoke tests:
+
+```bash
+npm run test:e2e
+```
+
+Run all tests:
+
+```bash
+npm test
+```
+
+Notes:
+- Unit tests live in `tests/unit/` and use Jest + React Testing Library.
+- E2E smoke tests live in `tests/e2e/` and use Playwright.
+- E2E tests automatically start the app on port `3100` unless `PLAYWRIGHT_BASE_URL` is set.
 
 ## Learn More
 

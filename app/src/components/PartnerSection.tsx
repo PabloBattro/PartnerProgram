@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from '@/lib/i18n';
 import { Button, Input, Select, MultiSelect, TextArea, Card } from './ui';
+import { EventGallery } from './EventGallery';
 
 export function PartnerSection() {
   const { t } = useTranslation();
@@ -149,6 +150,9 @@ export function PartnerSection() {
           ))}
         </div>
       </section>
+
+      {/* Event Gallery — pre-form conversion nudge */}
+      <EventGallery persona="partner" variant="compact" />
 
       {/* Partner Form */}
       <section className="py-12 md:py-16" id="partner-form">

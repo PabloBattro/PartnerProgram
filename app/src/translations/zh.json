@@ -182,6 +182,19 @@
     "badgeSeller": "卖家",
     "badgePartner": "合作伙伴"
   },
+  "eventGallery": {
+    "title": "我们不只是连接——我们面对面汇聚",
+    "subtitle": "在我们的中国-拉美旗舰峰会上，我们让卖家和合作伙伴面对面交流。这就是真正的生态系统建设。",
+    "sellerTitle": "我们把拉美专家带到中国——为您服务",
+    "sellerSubtitle": "在最近的上海峰会上，顶级拉美服务商专程飞来与中国卖家一对一会面。法律、物流、营销——全在一个房间，随时帮助您拓展。",
+    "partnerTitle": "我们带您去中国，直接对接卖家",
+    "partnerSubtitle": "我们的合作伙伴不仅获得推荐——还能亲临现场。在上海峰会上，拉美专家与数百位卖家面对面交流，建立真实的客户渠道。",
+    "eventLabel": "Payoneer x 美客多 拉美峰会 2025，上海",
+    "altPanel": "拉美专家在 Payoneer x 美客多峰会上向中国卖家进行圆桌讨论",
+    "altEnviopack": "Enviopack 物流团队与中国卖家进行一对一会议",
+    "altTally": "Tally 法律服务团队在专属对接桌与中国卖家会面",
+    "altSnowball": "Snowball Partners 增长机构在峰会上为中国卖家提供咨询"
+  },
   "footer": {
     "powered": "技术支持",
     "disclaimer": "这是 Payoneer 拉美团队的探索性项目。提交您的信息即表示您同意就合作和拓展机会与您联系。",

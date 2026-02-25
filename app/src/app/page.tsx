@@ -8,6 +8,7 @@ import { SellerSection } from '@/components/SellerSection';
 import { PartnerSection } from '@/components/PartnerSection';
 import { Footer } from '@/components/Footer';
 import { MarketplaceLogos } from '@/components/MarketplaceLogos';
+import { EventGallery } from '@/components/EventGallery';
 import type { Persona } from '@/types/persona';
 
 function HomePage() {
@@ -27,6 +28,7 @@ function HomePage() {
       <Header persona={persona} onPersonaChange={setPersona} />
       <Hero onPersonaChange={handlePersonaChange} />
       <MarketplaceLogos />
+      <EventGallery persona={persona} />
 
       {/* Persona Content */}
       <div ref={contentRef}>

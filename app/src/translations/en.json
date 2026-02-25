@@ -182,6 +182,19 @@
     "badgeSeller": "Seller",
     "badgePartner": "Partner"
   },
+  "eventGallery": {
+    "title": "We Don't Just Connect — We Convene",
+    "subtitle": "At our flagship China-LATAM summit, we brought sellers and partners face to face. This is what real ecosystem building looks like.",
+    "sellerTitle": "We Bring LATAM Experts to China — For You",
+    "sellerSubtitle": "At our latest summit in Shanghai, top LATAM service providers flew in to meet Chinese sellers one-on-one. Legal, logistics, marketing — all in one room, ready to help you expand.",
+    "partnerTitle": "We Take You to China to Meet Sellers Directly",
+    "partnerSubtitle": "Our partners don't just get referrals — they get a seat at the table. At our Shanghai summit, LATAM experts met hundreds of sellers face-to-face, building real client pipelines.",
+    "eventLabel": "Payoneer x Mercado Libre LATAM Summit 2025, Shanghai",
+    "altPanel": "Panel discussion with LATAM experts presenting to Chinese sellers at the Payoneer x Mercado Libre summit",
+    "altEnviopack": "Enviopack logistics team in a one-on-one meeting with Chinese sellers",
+    "altTally": "Tally legal services team meeting with Chinese sellers at a dedicated matchmaking table",
+    "altSnowball": "Snowball Partners growth agency consulting with Chinese sellers at the summit"
+  },
   "footer": {
     "powered": "Powered by",
     "disclaimer": "This is an exploratory initiative by Payoneer's LATAM team. By submitting your information, you agree to be contacted regarding partnership and expansion opportunities.",
