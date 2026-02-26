@@ -36,6 +36,11 @@ function HomePage() {
       </div>
 
       <Footer />
+
+      {/* Hidden Marketo form containers — required by MktoForms2 API */}
+      <div className="hidden" aria-hidden="true">
+        <form id="mktoForm_20090" />
+      </div>
     </div>
   );
 }

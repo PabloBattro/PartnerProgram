@@ -5,6 +5,7 @@ import { useTranslation } from '@/lib/i18n';
 import { Button, Input, Select, MultiSelect, Card } from './ui';
 import { Testimonials } from './Testimonials';
 import { EventGallery } from './EventGallery';
+import { submitToMarketo, MARKETO_SELLER_FORM_ID } from '@/lib/marketo';
 
 export function SellerSection() {
   const { t } = useTranslation();
@@ -42,6 +43,18 @@ export function SellerSection() {
 
       if (!res.ok) throw new Error('Submission failed');
       setSubmitted(true);
+
+      // Push lead to Marketo in the background (fire-and-forget).
+      // Supabase is the source of truth — Marketo failure is non-blocking.
+      if (MARKETO_SELLER_FORM_ID) {
+        submitToMarketo(MARKETO_SELLER_FORM_ID, {
+          Company: form.company,
+          FirstName: form.name.split(' ')[0] || form.name,
+          LastName: form.name.split(' ').slice(1).join(' ') || '-',
+          Email: form.email,
+          Phone: form.phone,
+        });
+      }
     } catch {
       setError(t('seller.formError'));
     } finally {

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { DM_Sans } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 
 const dmSans = DM_Sans({
@@ -26,6 +27,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${dmSans.variable} font-sans antialiased`}>
         {children}
+        <Script
+          src="//go.payoneer.com/js/forms2/js/forms2.min.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
